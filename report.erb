@@ -5,6 +5,8 @@
     <meta name="viewport" content="initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:600' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages': ['corechart']});
@@ -76,15 +78,22 @@
     <title></title>
   </head>
   <body>
-    <%= page_title %>
+
+    <h2>
+      <%= page_title %>
+    </h2>
     <h1>
       We made
       <%= formatted_number((bundles.map { |data| data["Money"].to_i}).inject(0, :+)) %>
-      space money units this week.
+      this week.
     </h1>
     <div class="charts">
-      <div id="piechart1" style="width: 900px; height: 500px;"></div>
-      <div id="piechart2" style="width: 900px; height: 500px;"></div>
+      <div class="chart1">
+        <div id="piechart1" style="width: 600px; height: 400px;"></div>
+      </div>
+      <div class="chart2">
+        <div id="piechart2" style="width: 600px; height: 400px;"></div>
+      </div>
     </div>
     <table>
       <tr>
@@ -107,25 +116,41 @@
     <ol></ol>
     <ul>
       <img src="https://media.giphy.com/media/u0v3z2iQLxyHC/giphy.gif">
-      <li>Fry took
+      <li>
+        <i class="fa fa-rocket"></i>
+        Fry took
         <%= fry_data.count %>
         trips and made a bonus of
-        <%= formatted_number((fry_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>.</li>
+        <%= formatted_number((fry_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>
+        <i class="fa fa-rocket"></i>
+      </li>
       <img src="https://media.giphy.com/media/Ttrf7HUkfFfS8/giphy.gif">
-      <li>Amy took
+      <li>
+        <i class="fa fa-rocket"></i>
+        Amy took
         <%= amy_data.count %>
         trip and made a bonus of
-        <%= formatted_number((amy_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>.</li>
-      <img src="https://media.giphy.com/media/9Bo9q3dR3Rkt2/giphy.gif">
-      <li>Bender took
+        <%= formatted_number((amy_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>
+        <i class="fa fa-rocket"></i>
+      </li>
+      <img src="https://media.giphy.com/media/DIonHQ918qqbu/giphy.gif">
+      <li>
+        <i class="fa fa-rocket"></i>
+        Bender took
         <%= bender_data.count %>
         trips and made a bonus of
-        <%= formatted_number((bender_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>.</li>
-      <img src="https://media.giphy.com/media/112P9MP1KDlrIA/giphy.gif">
-      <li>Leela took
+        <%= formatted_number((bender_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>
+        <i class="fa fa-rocket"></i>
+      </li>
+      <img src="http://i.imgur.com/gxgpvI4.gif">
+      <li>
+        <i class="fa fa-rocket"></i>
+        Leela took
         <%= leela_data.count %>
         trips and made a bonus of
-        <%= formatted_number((leela_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>.</li>
+        <%= formatted_number((leela_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>
+        <i class="fa fa-rocket"></i>
+      </li>
     </ul>
 
   </body>

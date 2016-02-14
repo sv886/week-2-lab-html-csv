@@ -3,7 +3,7 @@ require "csv"
 
 html = File.read("report.erb")
 
-page_title = "Report"
+page_title = "PLANET EXPRESS WEEKLY REPORT"
 
 bundles = []
 
