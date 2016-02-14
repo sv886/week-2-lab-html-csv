@@ -1,0 +1,19 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #2029A5;
+  justify-content: space-around;
+}
+
+.charts {
+  background: #2029A5;
+  flex-direction: row;
+  border-radius: 40px;
+}
+
+ul img {
+  border: 5px solid #F2FF79;
+  border-radius: 90px;
+  list-style: none;
+}

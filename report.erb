@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages': ['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data1 = google.visualization.arrayToDataTable([
+          [
+            'Name', '$ Amount'
+          ],
+          [
+            'Fry', <%= (fry_data.map { |data| data["Money"].to_i}.reduce(:+)) %>
+          ],
+          [
+            'Amy', <%= (amy_data.map { |data| data["Money"].to_i}.reduce(:+)) %>
+          ],
+          [
+            'Bender', <%= (bender_data.map { |data| data["Money"].to_i}.reduce(:+)) %>
+          ],
+          ['Leela', <%= (leela_data.map { |data| data["Money"].to_i}.reduce(:+)) %>]
+        ]);
+
+        var options = {
+          title: 'Money per Pilot'
+        };
+
+        var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+        chart1.draw(data1, options);
+
+        var data2 = google.visualization.arrayToDataTable([
+          [
+            'Planet', '$ Amount'
+          ],
+          [
+            'Earth', <%= (fry_data.map { |data| data["Money"].to_i}.reduce(:+)) %>
+          ],
+          [
+            'Mars', <%= (amy_data.map { |data| data["Money"].to_i}.reduce(:+)) %>
+          ],
+          [
+            'Uranus', <%= (bender_data.map { |data| data["Money"].to_i}.reduce(:+)) %>
+          ],
+          [
+            'Moon', <%= (moon.map { |data| data["Money"].to_i}.reduce(:+)) %>
+          ],
+          [
+            'Jupiter', <%= (jupiter.map { |data| data["Money"].to_i}.reduce(:+)) %>
+          ],
+          [
+            'Pluto', <%= (pluto.map { |data| data["Money"].to_i}.reduce(:+)) %>
+          ],
+          [
+            'Saturn', <%= (saturn.map { |data| data["Money"].to_i}.reduce(:+)) %>
+          ],
+          ['Mercury', <%= (mercury.map { |data| data["Money"].to_i}.reduce(:+)) %>]
+        ]);
+
+        var options = {
+          title: 'Money per Planet'
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart2.draw(data2, options);
+      }
+    </script>
+
+    <title></title>
+  </head>
+  <body>
+    <%= page_title %>
+    <h1>
+      We made
+      <%= formatted_number((bundles.map { |data| data["Money"].to_i}).inject(0, :+)) %>
+      space money units this week.
+    </h1>
+    <div class="charts">
+      <div id="piechart1" style="width: 900px; height: 500px;"></div>
+      <div id="piechart2" style="width: 900px; height: 500px;"></div>
+    </div>
+    <table>
+      <tr>
+        <th>Destination</th>
+        <th>Shipment</th>
+        <th>Crates</th>
+        <th>Money</th>
+      </tr>
+      <tbody>
+        <% bundles.each do |table| %>
+        <tr>
+          <td><%= table["Destination"] %></td>
+          <td><%= table["Shipment"] %></td>
+          <td><%= table["Crates"] %></td>
+          <td><%= table["Money"] %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <ol></ol>
+    <ul>
+      <img src="https://media.giphy.com/media/u0v3z2iQLxyHC/giphy.gif">
+      <li>Fry took
+        <%= fry_data.count %>
+        trips and made a bonus of
+        <%= formatted_number((fry_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>.</li>
+      <img src="https://media.giphy.com/media/Ttrf7HUkfFfS8/giphy.gif">
+      <li>Amy took
+        <%= amy_data.count %>
+        trip and made a bonus of
+        <%= formatted_number((amy_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>.</li>
+      <img src="https://media.giphy.com/media/9Bo9q3dR3Rkt2/giphy.gif">
+      <li>Bender took
+        <%= bender_data.count %>
+        trips and made a bonus of
+        <%= formatted_number((bender_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>.</li>
+      <img src="https://media.giphy.com/media/112P9MP1KDlrIA/giphy.gif">
+      <li>Leela took
+        <%= leela_data.count %>
+        trips and made a bonus of
+        <%= formatted_number((leela_data.map { |data| data["Money"].to_i}.reduce(:+)) * 0.1) %>.</li>
+    </ul>
+
+  </body>
+</html>
